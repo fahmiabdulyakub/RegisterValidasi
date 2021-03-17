@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, TextInput, View} from 'react-native';
+import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import {colors, fonts, hp, rf, wp} from '../../../constants';
+import ButtonIconOnly from '../ButtonIconOnly';
 
 const Input = ({
   placeholder,
@@ -20,6 +21,9 @@ const Input = ({
   paddingHorizontal,
   paddingRight,
   backgroundColor,
+  onPress,
+  icon,
+  secureTextEntry,
 }) => {
   return (
     <View
@@ -40,7 +44,9 @@ const Input = ({
         multiline={multiline}
         numberOfLines={5}
         maxLength={maxLength}
+        secureTextEntry={secureTextEntry}
       />
+      {onPress && <ButtonIconOnly icon={icon} />}
     </View>
   );
 };
