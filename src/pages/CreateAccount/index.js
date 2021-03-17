@@ -1,11 +1,16 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {fonts} from '../../constants';
+import {StyleSheet, View} from 'react-native';
+import {HeaderTextBack, NumberStep} from '../../components';
+import {colors, fonts} from '../../constants';
 
-const CreateAccount = () => {
+const CreateAccount = ({navigation}) => {
   return (
-    <View>
-      <Text style={styles.text}>Create Account</Text>
+    <View style={styles.page}>
+      <HeaderTextBack
+        label={'Create Account'}
+        onPressBack={() => navigation.goBack()}
+      />
+      <NumberStep />
     </View>
   );
 };
@@ -13,6 +18,10 @@ const CreateAccount = () => {
 export default CreateAccount;
 
 const styles = StyleSheet.create({
+  page: {
+    backgroundColor: colors.bg.blue3,
+    flex: 1,
+  },
   text: {
     fontFamily: fonts.MontserratBold,
   },

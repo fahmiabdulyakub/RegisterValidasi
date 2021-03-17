@@ -59,6 +59,15 @@ const styles = StyleSheet.create({
     borderWidth: borderWidth,
     borderColor: borderColor,
     paddingVertical: paddingVertical,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+
+    elevation: 4,
   }),
   title: (textColor, fontSize, fontFamily) => ({
     fontSize: fontSize ? fontSize : rf(2),

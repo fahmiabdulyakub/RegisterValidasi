@@ -34,6 +34,7 @@ export const colors = {
     silver: mainColor.silver,
     purple: mainColor.purple,
     blue3: mainColor.blue3,
+    concrete: mainColor.concrete,
   },
   bg: {
     white: mainColor.white,
@@ -42,6 +43,7 @@ export const colors = {
     yello: mainColor.yello,
     gray: mainColor.gray,
     abu: mainColor.abu,
+    abuTua: mainColor.abuTua,
     concrete: mainColor.concrete,
     red: mainColor.red,
     grayMuda: mainColor.grayMuda,
