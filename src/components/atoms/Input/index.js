@@ -46,7 +46,7 @@ const Input = ({
         maxLength={maxLength}
         secureTextEntry={secureTextEntry}
       />
-      {onPress && <ButtonIconOnly icon={icon} />}
+      {onPress && <ButtonIconOnly onPress={onPress} icon={icon} />}
     </View>
   );
 };

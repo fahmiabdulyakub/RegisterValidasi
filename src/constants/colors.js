@@ -12,7 +12,7 @@ const mainColor = {
   abu: '#E0E0E0',
   abuTua: '#707070',
   abuMuda: '#C2C2C2',
-  green: '#23BEA0',
+  green: '#07E024',
   merah: '#D7463C',
   grayMuda: '#828282',
   purple: '#5856D7',

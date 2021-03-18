@@ -16,6 +16,8 @@ const Button = ({
   paddingVertical,
   borderRadius,
   numberOfLines,
+  marginHorizontal,
+  bottom,
 }) => {
   return (
     <TouchableOpacity
@@ -26,6 +28,8 @@ const Button = ({
         borderColor,
         paddingVertical,
         borderRadius,
+        marginHorizontal,
+        bottom,
       )}
       onPress={onPress}
       disabled={disabled}>
@@ -49,6 +53,8 @@ const styles = StyleSheet.create({
     borderColor,
     paddingVertical,
     borderRadius,
+    marginHorizontal,
+    bottom,
   ) => ({
     padding: 5,
     backgroundColor: buttonColor ? buttonColor : colors.bg.yello,
@@ -56,9 +62,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: paddingHorizontal ? paddingHorizontal : 5,
+    marginHorizontal: marginHorizontal,
     borderWidth: borderWidth,
     borderColor: borderColor,
     paddingVertical: paddingVertical,
+    bottom: bottom,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
