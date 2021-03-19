@@ -1,11 +1,43 @@
-import React from 'react';
-import {Image, StatusBar, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Image,
+  StatusBar,
+  StyleSheet,
+  Text,
+  ToastAndroid,
+  View,
+} from 'react-native';
 import {BgTop, ICEmail} from '../../assets';
 import {Button, Gap, Input, NumberStep} from '../../components';
 import {colors, fonts} from '../../constants';
 import {hp, rf, wp} from '../../constants/display';
+import {regex} from '../../utils/regex';
 
 const RegisterEmail = ({navigation}) => {
+  const [email, setEmail] = useState(false);
+
+  const validateEmail = value => {
+    if (value.length === 0) {
+      setEmail(false);
+    } else if (regex.email.test(value) === true) {
+      setEmail(true);
+    } else {
+      setEmail(false);
+    }
+  };
+
+  const onNext = () => {
+    if (email) {
+      navigation.navigate('CreateAccount');
+    } else {
+      ToastAndroid.showWithGravity(
+        'Email is not valid',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
+    }
+  };
+
   return (
     <View style={styles.page}>
       <StatusBar backgroundColor={colors.bg.blue3} />
@@ -27,6 +59,7 @@ const RegisterEmail = ({navigation}) => {
           <Input
             placeholder={'Email'}
             fontSize={rf(1.8)}
+            onChangeText={value => validateEmail(value)}
             fontFamily={fonts.MontserratMedium}
             placeholderColor={colors.text.grayMuda}
             colorText={colors.text.grayMuda}
@@ -41,7 +74,7 @@ const RegisterEmail = ({navigation}) => {
           paddingVertical={hp(2)}
           borderRadius={wp(2)}
           title={'Next'}
-          onPress={() => navigation.navigate('CreateAccount')}
+          onPress={() => onNext()}
         />
       </View>
     </View>

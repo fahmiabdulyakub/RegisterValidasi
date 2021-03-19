@@ -61,7 +61,7 @@ const CreateAccount = ({navigation}) => {
         label={'Create Account'}
         onPressBack={() => navigation.goBack()}
       />
-      <NumberStep />
+      <NumberStep step1={true} />
       <Gap height={hp(3)} />
       <View style={styles.container}>
         <Text style={styles.title}>Create Password</Text>
@@ -120,7 +120,7 @@ const CreateAccount = ({navigation}) => {
         disabled={upper && lower && number && character ? false : true}
         bottom={hp(3)}
         title={'Next'}
-        onPress={() => navigation.navigate('CreateAccount')}
+        onPress={() => navigation.navigate('PersonalInformation')}
       />
     </View>
   );
