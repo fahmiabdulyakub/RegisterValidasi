@@ -1,4 +1,5 @@
-![RegistrasiValidasi](https://user-images.githubusercontent.com/47190955/111876562-d9ca0e00-89d1-11eb-9de5-771898a7e9ec.gif)
+![RegistrasiValidasi](https://user-images.githubusercontent.com/47190955/111877255-0af80d80-89d5-11eb-87cc-a14ad4c7f548.gif)
+
 # RegisterValidasi
 1. git clone https://github.com/fahmiabdulyakub/RegisterValidasi.git or download zip
 2. go to the project directory
