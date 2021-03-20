@@ -1,8 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, Animated, TouchableOpacity} from 'react-native';
-import {ICCalender} from '../../assets';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from 'moment';
+import {StyleSheet, Text, View, Animated} from 'react-native';
+import {ICCalender, ICChevron} from '../../assets';
 import {keyframes, stagger} from 'popmotion';
-import {Button, Gap, HeaderTextBack, NumberStep} from '../../components';
+import {
+  Button,
+  ButtonIconText,
+  Gap,
+  HeaderTextBack,
+  NumberStep,
+} from '../../components';
 import {colors, fonts, hp, rf, wp} from '../../constants';
 const COUNT = 1;
 const DURATION = 1000;
@@ -12,12 +20,17 @@ const constructAnimations = () =>
 
 const Schedule = ({navigation}) => {
   const [animations, setAnimations] = useState(constructAnimations);
-  const [calender, setCalender] = useState(false);
+  const dateFormat = 'dddd, DD MMMM YYYY';
+  const [show, setShow] = useState(false);
+  const [mode, setMode] = useState('');
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
+  const [displayDate, setDisplayDate] = useState('');
+  const [displayTime, setDisplayTime] = useState('');
+  const timeFormat = 'HH:mm';
   useEffect(() => {
-    if (calender === false) {
-      animateCircles();
-    }
-  }, [calender]);
+    animateCircles();
+  }, []);
 
   const animateCircles = () => {
     const keyframess = Array(COUNT).fill(
@@ -32,13 +45,26 @@ const Schedule = ({navigation}) => {
       setAnimations(animationss);
     });
   };
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false);
+    if (mode === 'date') {
+      setDate(currentDate);
+      const hasilDisplay = moment(currentDate).format(dateFormat).toString();
+      setDisplayDate(hasilDisplay);
+    } else {
+      setTime(currentDate);
+      const hasilDisplay = moment(currentDate).format(timeFormat);
+      setDisplayTime(hasilDisplay);
+    }
+  };
   return (
     <View style={styles.page}>
       <HeaderTextBack
         label={'Create Account'}
         onPressBack={() => navigation.goBack()}
       />
-      <NumberStep step1={true} step2={true} />
+      <NumberStep step1={true} step2={true} step3={true} />
       <Gap height={hp(1)} />
       <View style={styles.container}>
         {animations.map(({opacity, scale}, index) => {
@@ -55,9 +81,7 @@ const Schedule = ({navigation}) => {
             />
           );
         })}
-        <TouchableOpacity style={styles.midCircle}>
-          {<ICCalender />}
-        </TouchableOpacity>
+        <View style={styles.midCircle}>{<ICCalender />}</View>
         <Gap height={hp(14)} />
         <Text style={styles.title}>Schedule Video Call</Text>
         <Gap height={hp(1)} />
@@ -65,6 +89,32 @@ const Schedule = ({navigation}) => {
           Choose the date and time that you preferred, we will send a link via
           email to make a video call on the scheduled date and time{' '}
         </Text>
+        <Gap height={hp(14)} />
+        <ButtonIconText
+          title={displayDate ? displayDate : '- Choose Date -'}
+          iconRight={<ICChevron />}
+          titleColor={colors.text.gray}
+          backgroundColor={colors.bg.white}
+          title1={'Date'}
+          paddingVertical={hp(1.5)}
+          onPress={() => {
+            setShow(true);
+            setMode('date');
+          }}
+        />
+        <Gap height={hp(3)} />
+        <ButtonIconText
+          title={displayTime ? displayTime : '- Choose Time -'}
+          iconRight={<ICChevron />}
+          titleColor={colors.text.gray}
+          backgroundColor={colors.bg.white}
+          title1={'Time'}
+          paddingVertical={hp(1.5)}
+          onPress={() => {
+            setShow(true);
+            setMode('time');
+          }}
+        />
       </View>
       <Button
         buttonColor={colors.bg.blue}
@@ -75,6 +125,15 @@ const Schedule = ({navigation}) => {
         bottom={hp(3)}
         title={'Next'}
       />
+      {show && (
+        <DateTimePicker
+          value={mode === 'date' ? date : time}
+          mode={mode}
+          onChange={onChange}
+          maximumDate={new Date(2030, 1, 1)}
+          minimumDate={new Date()}
+        />
+      )}
     </View>
   );
 };

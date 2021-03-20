@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {Gap} from '../../../components';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors, fonts, rf, hp, wp} from '../../../constants';
 
 const ButtonIconText = ({
   title,
+  title1,
   icon,
   iconRight,
   flexDirection,
@@ -33,10 +33,13 @@ const ButtonIconText = ({
       onPress={onPress}
       disabled={disabled}>
       {icon && icon}
-      <Gap width={5} />
-      <Text style={styles.title(titleColor, fontTitle, widthText, leftText)}>
-        {title}
-      </Text>
+      <View>
+        <Text style={styles.title1}>{title1}</Text>
+        <Text style={styles.title(titleColor, fontTitle, widthText, leftText)}>
+          {title}
+        </Text>
+      </View>
+
       {iconRight && iconRight}
     </TouchableOpacity>
   );
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius ? borderRadius : 15,
     flexDirection: flexDirection ? flexDirection : 'row',
     alignItems: 'center',
-    justifyContent: height ? 'space-between' : 'center',
+    justifyContent: 'space-between',
   }),
   title: (titleColor, fontTitle, widthText, leftText) => ({
     fontFamily: fontTitle ? fontTitle : fonts.MontserratRegular,
@@ -69,4 +72,9 @@ const styles = StyleSheet.create({
     width: widthText ? widthText : null,
     left: leftText ? leftText : null,
   }),
+  title1: {
+    fontFamily: fonts.MontserratBold,
+    color: colors.text.abu,
+    fontSize: rf(1.3),
+  },
 });

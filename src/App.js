@@ -1,4 +1,5 @@
 import * as React from 'react';
+import 'moment/locale/id';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {
@@ -13,7 +14,7 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="PersonalInformation">
+      <Stack.Navigator initialRouteName="RegisterEmail">
         <Stack.Screen
           name="RegisterEmail"
           component={RegisterEmail}
